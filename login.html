@@ -23,9 +23,9 @@
           <i class="layui-icon layui-icon-username"></i>
           <input
             type="text"
-            name="title"
+            name="username"
             required
-            lay-verify="required"
+            lay-verify="required|username"
             placeholder="请输入用户名"
             autocomplete="off"
             class="layui-input"
@@ -38,7 +38,7 @@
             type="password"
             name="password"
             required
-            lay-verify="required"
+            lay-verify="required|pass"
             placeholder="请输入密码"
             autocomplete="off"
             class="layui-input"
@@ -71,9 +71,9 @@
           <i class="layui-icon layui-icon-username"></i>
           <input
             type="text"
-            name="title"
+            name="username"
             required
-            lay-verify="required"
+            lay-verify="required|username"
             placeholder="请输入用户名"
             autocomplete="off"
             class="layui-input"
@@ -86,10 +86,10 @@
             type="password"
             name="password"
             required
-            lay-verify="required"
+            lay-verify="required|pass"
             placeholder="请输入密码"
             autocomplete="off"
-            class="layui-input"
+            class="layui-input pass"
           />
         </div>
         <!-- 确认密码 -->
@@ -97,12 +97,11 @@
           <i class="layui-icon layui-icon-password"></i>
           <input
             type="password"
-            name="password"
             required
-            lay-verify="required"
+            lay-verify="required|pass|repass"
             placeholder="再次确认密码"
             autocomplete="off"
-            class="layui-input"
+            class="layui-input repass"
           />
         </div>
         <!-- 登录按钮 -->
