@@ -43,7 +43,6 @@ $(function () {
     pass: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格']
   })
 
-  var baseURL = 'http://ajax.frontend.itheima.net'
   //3、实现新用户的注册
   $('.register .myForm').on('submit', function (e) {
     // 阻止表单的默认行为
@@ -51,7 +50,7 @@ $(function () {
 
     $.ajax({
       type: 'POST',
-      url: baseURL + '/api/reguser',
+      url: '/api/reguser',
       // 使用表单序列化的方式将form标签内的所有的具有name属性的input select textarea标签的值一次性获取并拼接成字符串
       data: $(this).serialize(),
       success: function (res) {
@@ -71,7 +70,7 @@ $(function () {
     e.preventDefault()
     $.ajax({
       type: 'POST',
-      url: baseURL + '/api/login',
+      url: '/api/login',
       data: $(this).serialize(),
       success: function (res) {
         console.log(res)
