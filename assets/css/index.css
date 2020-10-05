@@ -1,0 +1,45 @@
+.heimaFooter {
+  text-align: center;
+}
+.layui-header .text-avatar,
+.userInfo .text-avatar {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 22px;
+  border-radius: 50%;
+  vertical-align: middle;
+  background-color: rgb(0, 150, 136);
+  margin-right: 10px;
+}
+.layui-nav img,
+.userInfo img {
+  display: none;
+}
+
+/* 设置字体图标的样式 */
+.layui-header .layui-icon,
+.layui-side .layui-icon,
+.layui-side .iconfont {
+  font-size: 16px;
+  margin-right: 6px;
+}
+.layui-nav-itemed > .layui-nav-child {
+  padding-left: 16px;
+}
+.layui-nav-itemed > .layui-nav-child .layui-icon {
+  margin-right: 8px;
+}
+
+/* 侧边栏的头像和欢迎语 */
+.userInfo {
+  height: 60px;
+  line-height: 60px;
+  padding-left: 40px;
+  font-size: 14px;
+}
+.userInfo a {
+  color: #fff;
+}

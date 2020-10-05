@@ -3,4 +3,11 @@
 $.ajaxPrefilter(function (options) {
   //   console.log(options) // 包括发送ajax请求时参数的所有内容
   options.url = 'http://ajax.frontend.itheima.net' + options.url
+
+  // 统一设置token 应该要将登陆和注册的请求排除在外
+  if (options.url.includes('/my')) {
+    options.headers = {
+      Authorization: window.localStorage.getItem('token')
+    }
+  }
 })
