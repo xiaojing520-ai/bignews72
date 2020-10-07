@@ -13,7 +13,9 @@
     <div class="layui-card">
       <div class="layui-card-header">修改用户信息</div>
       <div class="layui-card-body">
-        <form class="layui-form myForm" action="">
+        <form class="layui-form myForm" lay-filter="myForm" action="">
+          <!-- 隐藏域就是一个input标签 type='hidden' 作用是用来存储数据 但是不在页面中显示 -->
+          <input type="hidden" name="id" />
           <div class="layui-form-item">
             <label class="layui-form-label">登陆名称</label>
             <div class="layui-input-block">
@@ -35,7 +37,7 @@
                 type="text"
                 name="nickname"
                 required
-                lay-verify="required"
+                lay-verify="required|nickname"
                 placeholder="请输入用户昵称"
                 autocomplete="off"
                 class="layui-input"
@@ -49,7 +51,7 @@
                 type="text"
                 name="email"
                 required
-                lay-verify="required"
+                lay-verify="required|email"
                 placeholder="请输入用户邮箱"
                 autocomplete="off"
                 class="layui-input"
@@ -61,7 +63,9 @@
               <button class="layui-btn" lay-submit lay-filter="formDemo">
                 提交修改
               </button>
-              <button class="layui-btn layui-btn-primary">重置</button>
+              <button class="layui-btn layui-btn-primary btn-reset">
+                重置
+              </button>
             </div>
           </div>
         </form>

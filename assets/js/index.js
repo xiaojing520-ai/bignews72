@@ -13,13 +13,17 @@ $(function () {
     success: function (res) {
       console.log(res)
       if (res.status === 0) {
+        var nickname =
+          res.data.nickname == '' ? res.data.username : res.data.nickname
         //渲染欢迎语
-        $('.userInfo .welcome').html(`欢迎&nbsp;&nbsp;${res.data.username}`)
+        $('.userInfo .welcome').html(`欢迎&nbsp;&nbsp;${nickname}`)
         //如果有头像和没头像的判断
         if (!res.data.user_pic) {
           //没头像
-          $('.userInfo .text-avatar').html(res.data.username.slice(0, 1))
-          $('.layui-header .text-avatar').html(res.data.username.slice(0, 1))
+          $('.userInfo .text-avatar').html(nickname.slice(0, 1).toUpperCase())
+          $('.layui-header .text-avatar').html(
+            nickname.slice(0, 1).toUpperCase()
+          )
         } else {
           //有头像
           $('.userInfo img').show().attr('src', res.data.user_pic).prev().hide()
