@@ -25,16 +25,17 @@ $(function () {
           $('.userInfo img').show().attr('src', res.data.user_pic).prev().hide()
         }
       }
-    },
-    complete: function (res) {
-      // responseJSON: {status: 1, message: "身份认证失败！"}
-      if (
-        res.responseJSON.status == 1 &&
-        res.responseJSON.message == '身份认证失败！'
-      ) {
-        location.href = './login.html'
-      }
     }
+    // 验证token
+    // complete: function (res) {
+    //   // responseJSON: {status: 1, message: "身份认证失败！"}
+    //   if (
+    //     res.responseJSON.status == 1 &&
+    //     res.responseJSON.message == '身份认证失败！'
+    //   ) {
+    //     location.href = './login.html'
+    //   }
+    // }
   })
 
   // 2、实现退出功能
