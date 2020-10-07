@@ -43,3 +43,8 @@
 .userInfo a {
   color: #fff;
 }
+
+/* iframe标签的背景设置成灰色 */
+iframe {
+  background-color: #eee;
+}
