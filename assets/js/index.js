@@ -27,6 +27,7 @@ $(function () {
         } else {
           //有头像
           $('.userInfo img').show().attr('src', res.data.user_pic).prev().hide()
+          $('.layui-nav img').show().attr('src', res.data.user_pic).prev().hide()
         }
       }
     }
