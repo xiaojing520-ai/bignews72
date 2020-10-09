@@ -100,4 +100,45 @@ $(function () {
       })
     })
   })
+
+  // 给编辑按钮绑定点击事件，通过事件委托 显示弹出层
+  $("tbody").on("click", ".btn-edit", function () {
+    var id = $(this).data("id")
+    window.addIndex = layer.open({
+      title: "编辑文章分类",
+      type: 1,
+      content: $("#editCategory").html(),
+      area: ["500px", "250px"]
+    })
+
+    // 发送ajax拿数据，渲染出来
+    $.ajax({
+      type: "GET",
+      url: "/my/article/cates/" + id,
+      success: function (res) {
+        console.log(res)
+        if (res.status == 0) {
+          // 拿到数据后渲染出来
+          layui.form.val("editForm", res.data)
+        }
+      }
+    })
+  })
+
+  // 更新数据
+  $("body").on("submit", ".editForm", function (e) {
+    e.preventDefault()
+    $.ajax({
+      type: "POST",
+      url: "/my/article/updatecate",
+      data: $(this).serialize(),
+      success: function (res) {
+        console.log(res)
+        if (res.status == 0) {
+          layer.close(window.addIndex)
+          renderList()
+        }
+      }
+    })
+  })
 })
