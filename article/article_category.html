@@ -50,6 +50,18 @@
         </table>
       </div>
     </div>
+    <script type="text/html" id="categoryList">
+      {{each data value index}}
+      <tr>
+        <td>{{value.name}}</td>
+        <td>{{value.alias}}</td>
+        <td>
+          <button type="button" data-id="{{value.Id}}" class="layui-btn   layui-btn-xs">编辑</button>
+          <button type="button"  data-id="{{value.Id}}" class="layui-btn layui-btn-danger  layui-btn-xs">删除</button>
+        </td>
+      </tr>
+      {{/each}}
+    </script>
 
       <!-- 引入jquery文件 -->
      <script src="../assets/lib/jquery.js"></script>
