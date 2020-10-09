@@ -3,9 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>文章类别</title>
+    <!-- 引入layui的样式文件 -->
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+     <!-- 引入当前页面自己写的css文件 -->
+    <link rel="stylesheet" href="../assets/css/article/article_category.css">
   </head>
   <body>
-    <h2>文章分类页面</h2>
+    <div class="layui-card">
+      <div class="layui-card-header">
+        <span>文章类别管理</span>
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-sm">增加分类</button>
+      </div>
+      <div class="layui-card-body">
+        <table class="layui-table">
+          <colgroup>
+            <col >
+            <col >
+            <col width="200">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>分类名称</th>
+              <th>分类别名</th>
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody>
+            <tr>
+              <td>贤心</td>
+              <td>2016-11-29</td>
+              <td>
+                <button type="button" class="layui-btn   layui-btn-xs">编辑</button>
+                <button type="button" class="layui-btn layui-btn-danger  layui-btn-xs">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td>许闲心</td>
+              <td>2016-11-28</td>
+              <td> 
+                <button type="button" class="layui-btn   layui-btn-xs">编辑</button>
+                <button type="button" class="layui-btn layui-btn-danger  layui-btn-xs">删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+      <!-- 引入jquery文件 -->
+     <script src="../assets/lib/jquery.js"></script>
+      <!-- 引入layui的js文件 -->
+     <script src="../assets/lib/layui/layui.all.js"></script>
+       <!-- 引入工具函数 -->
+     <script src="../assets/js/utils.js"></script>
+        <!-- 引入template模板引擎 -->
+     <script src="../assets/lib/template-web.js"></script>
+          <!-- 引入当前页面自己写的js文件 -->
+     <script src="../assets/js/article/article_category.js"></script>
   </body>
 </html>

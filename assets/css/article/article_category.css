@@ -1,0 +1,10 @@
+.layui-card {
+  margin: 16px;
+}
+
+/* 文章分类的头部左右内容 */
+.layui-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
