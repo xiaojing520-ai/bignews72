@@ -12,4 +12,31 @@ $(function () {
 
   // 1.3 创建裁剪区域
   $image.cropper(options)
+
+  // 2. 弹出选择文件的窗口
+  // 2.1 给上传按钮注册事件
+  $('.btn-upload').on('click', function () {
+    // 2.2 弹出选择文件的窗口
+    $('#avatar').click()
+  })
+
+  //给文件按钮注册change事件，生成图片的一个链接，显示出来
+  // 3. 预览待上传的图片
+  // 3.1 给文件按钮注册change事件
+  $('#avatar').on('change', function () {
+    // console.dir(this)
+    // 3.2 获取待上传的图片
+    var file = this.files[0]
+    // console.log(file) 图片信息
+    // 3.3 生成一个链接
+    var imgURL = URL.createObjectURL(file)
+    // console.log(imgURL)  生成一个图片链接
+
+    // 3.4 显示到img标签内
+
+    $image
+      .cropper('destroy') // 销毁旧的裁剪区域
+      .attr('src', imgURL) // 重新设置图片路径
+      .cropper(options) // 重新初始化裁剪区域
+  })
 })
