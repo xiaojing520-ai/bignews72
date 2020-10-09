@@ -43,7 +43,8 @@ $(function () {
   //上传头像   给确定按钮注册事件
   // 4. 上传头像
   // 4.1 给确定按钮注册事件
-  $('.btn-sure').on('click', function () {
+  $('.btn-sure').on('click', function (e) {
+    e.preventDefault()
     // 4.2 生成base64格式的图片链接
     var dataURL = $image
       .cropper('getCroppedCanvas', {
