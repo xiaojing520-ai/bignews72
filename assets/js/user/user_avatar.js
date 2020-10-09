@@ -39,4 +39,35 @@ $(function () {
       .attr('src', imgURL) // 重新设置图片路径
       .cropper(options) // 重新初始化裁剪区域
   })
+
+  //上传头像   给确定按钮注册事件
+  // 4. 上传头像
+  // 4.1 给确定按钮注册事件
+  $('.btn-sure').on('click', function () {
+    // 4.2 生成base64格式的图片链接
+    var dataURL = $image
+      .cropper('getCroppedCanvas', {
+        // 创建一个 Canvas 画布
+        width: 100,
+        height: 100
+      })
+      .toDataURL('image/png') // 将 Canvas 画布上的内容，转化为 base64 格式的字符串
+    // 4.3 发送ajax请示
+    $.ajax({
+      type: 'POST',
+      url: '/my/update/avatar',
+      data: {
+        avatar: dataURL
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.status == 0) {
+          // 4.4 更新成功之后要提示一下
+          layer.msg(res.message)
+          //4.5 主页面的头像要换掉
+          window.parent.getUserInfo()
+        }
+      }
+    })
+  })
 })

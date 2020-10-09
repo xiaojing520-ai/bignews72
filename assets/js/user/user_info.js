@@ -62,6 +62,7 @@ $(function () {
       success: function (res) {
         // 3.4 成功或失败都要进行提示
         layer.msg(res.message)
+        window.parent.getUserInfo()
       }
     })
   })
