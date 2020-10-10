@@ -27,18 +27,32 @@ $(function () {
 
   // 2. 获取文章列表中的数据
   // 2.1 直接发送ajax请示
-
-  $.ajax({
-    type: "GET",
-    url: "/my/article/list",
-    data: options,
-    success: function (res) {
-      console.log(res)
-      if (res.status == 0) {
-        // 2.2 使用模板进行渲染
-        var htmlStr = template("articleList", res)
-        $("tbody").html(htmlStr)
+  renderList()
+  function renderList() {
+    $.ajax({
+      type: "GET",
+      url: "/my/article/list",
+      data: options,
+      success: function (res) {
+        console.log(res)
+        if (res.status == 0) {
+          // 2.2 使用模板进行渲染
+          var htmlStr = template("articleList", res)
+          $("tbody").html(htmlStr)
+        }
       }
-    }
+    })
+  }
+
+  // 3. 筛选文章
+  // 3.1 给form标签注册事件 通过筛选按钮来触发
+  $(".myForm").on("submit", function (e) {
+    // 3.2 阻止默认请求行为
+    e.preventDefault()
+    // 3.2 改变筛选的条件
+    options.cate_id = $("#category").val()
+    options.state = $("#state").val()
+    // 3.3 发送ajax请求获取新数据
+    renderList()
   })
 })
