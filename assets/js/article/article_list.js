@@ -39,6 +39,9 @@ $(function () {
           // 2.2 使用模板进行渲染
           var htmlStr = template("articleList", res)
           $("tbody").html(htmlStr)
+
+          // 2.3 启用分页
+          renderPage(res)
         }
       }
     })
@@ -55,4 +58,34 @@ $(function () {
     // 3.3 发送ajax请求获取新数据
     renderList()
   })
+
+  // 文章列表页的分页布局
+  function renderPage(res) {
+    var laypage = layui.laypage
+    //执行一个laypage实例
+    laypage.render({
+      elem: "test1", //注意，这里的 test1 是 ID，不用加 # 号
+      count: res.total, //数据总数，从服务端得到
+      limit: options.pagesize, // 默认每页显示的条数
+      limits: [2, 3, 5, 10],
+      curr: options.pagenum, // 默认起始页
+      layout: ["count", "limit", "prev", "page", "next", "skip", "first"],
+      jump: function (obj, first) {
+        //obj包含了当前分页的所有参数，比如：
+        // console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+        // console.log(obj.limit); //得到每页显示的条数
+        // console.log(first);
+        //首次不执行
+        if (!first) {
+          //do something
+          // 修改发送给服务器的参数 当前页码值 当前每页的数据
+          options.pagenum = obj.curr
+          options.pagesize = obj.limit
+
+          // 发送请求，获取最新的分布数据显示出来
+          renderList()
+        }
+      }
+    })
+  }
 })
