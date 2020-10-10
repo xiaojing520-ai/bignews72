@@ -88,4 +88,41 @@ $(function () {
       }
     })
   }
+
+  // 删除文章列表的功能
+  //使用委托的方式给删除按钮注册事件，发送请示，删除数据
+  $("tbody").on("click", ".btn-del", function () {
+    // 5.9 获取当前页面中的文章数据  用什么来数量来表示都可以 比如说:删除按钮的个数 编辑按钮
+    var count = $("tbody .btn-del").length
+    // 5.2 获取当前删除按钮中的id
+    var articleId = $(this).data("id")
+    // 5.3 弹出提示框
+    layer.confirm(
+      "确认要删除该条数据吗?",
+      { icon: 3, title: "提示" },
+      function (index) {
+        //do something
+        // 5.4 发送ajax请求
+        $.ajax({
+          type: "GET",
+          url: "/my/article/delete/" + articleId,
+          success: function (res) {
+            console.log(res)
+            if (res.status == 0) {
+              // 5.5 提示信息
+              layer.msg(res.message)
+              // 5.7 关闭弹出层
+              layer.close(index)
+              // 5.10 判断当前页码中的文章数量
+              if (count == 1) {
+                options.pagenum = options.pagenum == 1 ? 1 : options.pagenum - 1
+              }
+              // 5.8 重新刷新页面
+              renderList()
+            }
+          }
+        })
+      }
+    )
+  })
 })
