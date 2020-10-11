@@ -104,13 +104,11 @@
         <td>{{value.pub_date}}</td>
         <td>{{value.state}}</td>
         <td>
-          <button
-            type="button"
-            data-id="{{value.Id}}"
+          <a
+            href="./article_edit.html?id={{value.Id}}"
             class="layui-btn layui-btn-xs btn-edit"
+            >编辑</a
           >
-            编辑
-          </button>
           <button
             type="button"
             data-id="{{value.Id}}"
