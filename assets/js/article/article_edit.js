@@ -71,4 +71,48 @@ $(function () {
       }
     })
   }
+
+  // // 5. 更新文章
+  // 5.1 给form表单注册click事件
+  $(".myForm").on("click", ".btn", function (e) {
+    // 5.2 阻止默认行为
+    e.preventDefault()
+    // console.log(e.target);
+    // 5.3 准备数据
+    var data = new FormData($(".myForm")[0])
+    // 5.4 判断此文章是什么状态 '发布' '草稿'
+    if ($(e.target).hasClass("btn-release")) {
+      // 说明是 发布
+      data.append("state", "发布")
+    } else {
+      // 说明是 草稿
+      data.append("state", "草稿")
+    }
+
+    $image
+      .cropper("getCroppedCanvas", {
+        width: 400,
+        height: 280
+      })
+      .toBlob(function (blob) {
+        // 将裁剪之后的图片，转化为 blob 对象
+        data.append("cover_img", blob)
+        data.append("content", tinyMCE.activeEditor.getContent())
+        // 发起请求，把文章信息保存到服务器
+        $.ajax({
+          method: "POST",
+          url: "/my/article/edit",
+          processData: false,
+          contentType: false,
+          data: data,
+          success: function (res) {
+            if (res.status !== 0) {
+              return layer.msg("发表文章失败！")
+            }
+            // 发表文章成功之后，立即跳转到文章列表页面
+            location.href = "./article_list.html"
+          }
+        })
+      })
+  })
 })
