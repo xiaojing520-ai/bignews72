@@ -34,4 +34,26 @@ $(function () {
       }
     }
   })
+
+  // 4. 单击选择封面的按钮弹出选择图片对话框
+  // 4.1 给选择封面按钮注册事件
+  $(".btn-upload").on("click", function (e) {
+    e.preventDefault()
+    $("#avatar").click()
+  })
+
+  // 5. 实现图片的本地预览功能
+  // 5.1 给input标签注册change事件
+  $("#avatar").on("change", function () {
+    // 5.2 获取待上传的图片
+    var file = this.files[0]
+    // 5.3 生成图片的链接
+    var imgUrl = URL.createObjectURL(file)
+
+    // 5.4 实现本地预览功能 需要先销毁之前的 然后再显示新的
+    $("#image")
+      .cropper("destroy") // 销毁旧的裁剪区域
+      .attr("src", imgUrl) // 重新设置图片路径
+      .cropper(options) // 重新初始化裁剪区域
+  })
 })
