@@ -56,4 +56,51 @@ $(function () {
       .attr("src", imgUrl) // 重新设置图片路径
       .cropper(options) // 重新初始化裁剪区域
   })
+
+  // 发布文章  用事件委托
+  $(".myForm").on("click", ".btn", function (e) {
+    // 6.2 阻止默认行为
+    e.preventDefault()
+    // console.log(e.target);
+    // 6.3 准备数据
+    var data = new FormData($(".myForm")[0])
+    // 6.4 判断此文章是什么状态 '发布' '草稿'
+    if ($(e.target).hasClass("btn-release")) {
+      // 说明是 发布
+      data.append("state", "发布")
+    } else {
+      // 说明是 草稿
+      data.append("state", "草稿")
+    }
+
+    $image
+      .cropper("getCroppedCanvas", {
+        width: 400,
+        height: 280
+      })
+      .toBlob(function (blob) {
+        // 将裁剪之后的图片，转化为 blob 对象
+        data.append("cover_img", blob)
+        // 由于原始的方式获取图片不到，因此使用如下方式来获取
+        data.append("content", tinyMCE.activeEditor.getContent())
+
+        // 发起请求，把文章信息保存到服务器
+        $.ajax({
+          type: "POST",
+          url: "/my/article/add",
+          data: data,
+          contentType: false,
+          processData: false,
+          success: function (res) {
+            console.log(res)
+            if (res.status !== 0) {
+              return layer.msg("发表文章失败！")
+            } else {
+              // 发表文章成功之后，立即跳转到文章列表页面
+              location.href = "./article_list.html"
+            }
+          }
+        })
+      })
+  })
 })
